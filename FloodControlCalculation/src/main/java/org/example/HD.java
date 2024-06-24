@@ -76,7 +76,7 @@ public class HD extends Reservoir {
     }
 
     public void floodControlCalculate() {
-        for (int i = 0; i < 24; i++) {
+        for (int i = 0; i < inflow.length; i++) {
 
             outflow[i] = getMaxPeriodAvgOutflow(reservoirVolume[i], inflow[i]);
             reservoirVolume[i + 1] = reservoirVolume[i] + (inflow[i] - outflow[i]) * T / 100000000;
