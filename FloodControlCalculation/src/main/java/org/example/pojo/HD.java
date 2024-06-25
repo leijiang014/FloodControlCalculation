@@ -7,6 +7,13 @@ public class HD extends Reservoir {
     public HD() {
         name = "HD";
     }
+
+    public void setInflow(double[] inflow) {
+        setPeriodNumber(inflow.length);
+        System.arraycopy(inflow, 0, this.inflow, 0, inflow.length);
+        reservoirVolume[0] = deadStorage;
+        reservoirWaterLevel[0] = getLevelByVolume(reservoirVolume[0]);
+    }
     @Override
     public double getLevelByVolume(double volume) {
         double[] xArray = {8.75, 8.96, 9.17, 9.38, 10.00, 10.83, 11.67, 12.50, 13.33, 14.48, 15.24};

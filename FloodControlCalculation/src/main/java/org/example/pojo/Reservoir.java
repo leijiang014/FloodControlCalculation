@@ -19,8 +19,7 @@ public abstract class Reservoir {
         reservoirWaterLevel = new double[periodNumber + 1];
         outflow = new double[periodNumber];
         this.periodNumber = periodNumber;
-        reservoirVolume[0] = 8.42;
-        reservoirWaterLevel[0] = getLevelByVolume(reservoirVolume[0]);
+
     }
 
     public double[] inflow ;
@@ -34,9 +33,6 @@ public abstract class Reservoir {
         for (int i = 0; i < inflow.length; i++) {
             this.inflow[i] = inflow[i];
         }
-
-
-
     }
 
     public double getLevelByVolume(double volume) {

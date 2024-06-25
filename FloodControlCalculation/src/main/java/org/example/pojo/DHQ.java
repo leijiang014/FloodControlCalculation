@@ -7,6 +7,13 @@ public class DHQ extends Reservoir {
     public DHQ() {
         name = "DHQ";
     }
+
+    public void setInflow(double[] inflow) {
+        setPeriodNumber(inflow.length);
+        System.arraycopy(inflow, 0, this.inflow, 0, inflow.length);
+        reservoirVolume[0] = deadStorage;
+        reservoirWaterLevel[0] = getLevelByVolume(reservoirVolume[0]);
+    }
     @Override
     public double getLevelByVolume(double volume) {
         //库容
