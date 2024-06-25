@@ -1,8 +1,12 @@
-package org.example;
+package org.example.test;
+
+import org.example.pojo.DHQ;
+import org.example.pojo.Statistcs;
 
 public class DHQTest {
     public static void main(String[] args) {
-        DHQ dhq = new DHQ(Statistcs.flood1);
+        DHQ dhq = new DHQ();
+        dhq.setInflow(Statistcs.flood1);
         double T = 3600;
         double currentStorage = 2.52;
         double inflow = 2000;

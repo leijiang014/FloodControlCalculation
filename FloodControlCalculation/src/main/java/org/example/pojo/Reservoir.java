@@ -1,8 +1,9 @@
-package org.example;
+package org.example.pojo;
 
 import java.util.Arrays;
 
 public abstract class Reservoir {
+    String name;
     public double usableStorage;//调节库容
     public double deadStorage;//死库容
 
@@ -18,6 +19,8 @@ public abstract class Reservoir {
         reservoirWaterLevel = new double[periodNumber + 1];
         outflow = new double[periodNumber];
         this.periodNumber = periodNumber;
+        reservoirVolume[0] = 8.42;
+        reservoirWaterLevel[0] = getLevelByVolume(reservoirVolume[0]);
     }
 
     public double[] inflow ;
@@ -27,10 +30,12 @@ public abstract class Reservoir {
 
 
     public void setInflow(double[] inflow) {
-
+        setPeriodNumber(inflow.length);
         for (int i = 0; i < inflow.length; i++) {
             this.inflow[i] = inflow[i];
         }
+
+
 
     }
 

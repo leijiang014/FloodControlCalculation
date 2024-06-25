@@ -1,23 +1,22 @@
-package org.example;
+package org.example.pojo;
 
-public class HD extends Reservoir {
+public class DHQ extends Reservoir {
+    public double usableStorage = 0.42;
+    public double deadStorage =2.52;
 
-
-    public double usableStorage = 8.28;
-    public double deadStorage = 8.42;
-
-
-    public HD(double []inflow) {
-        setPeriodNumber(inflow.length);
-        setInflow(inflow);
-
-        reservoirVolume[0] = 8.42;
-        reservoirWaterLevel[0] = getLevelByVolume(reservoirVolume[0]);
+    public DHQ() {
+        name = "DHQ";
     }
     @Override
     public double getLevelByVolume(double volume) {
-        double[] xArray = {8.75, 8.96, 9.17, 9.38, 10.00, 10.83, 11.67, 12.50, 13.33, 14.48, 15.24};
-        double[] yArray = {1598,1599,1600,1601,1604,1607,1610,1613,1616,1619,1622.78};
+        //库容
+        double[] xArray = {
+                1.50,1.57,1.63,1.69,1.77,1.93,1.91,1.98,2.05,2.13,2.21,2.29,2.37,2.45,2.62,2.71,2.79,2.88
+        };
+        //水位
+        double[] yArray = {
+                1462,1463,1464,1465,1466,1467,1468,1469,1470,1471,1472,1473,1474,1475,1476,1477,1478,1479
+        };
         if (volume <= xArray[0]) {
             return yArray[0];
         }
@@ -39,8 +38,14 @@ public class HD extends Reservoir {
 
 
     public double getMaxInstantOutflow(double volume) {
-        double[] xArray = {8.75, 8.96, 9.17, 9.38, 10.00, 10.83, 11.67, 12.50, 13.33, 14.48, 15.24};
-        double[] yArray = {0, 357.4970174, 632.4938402, 930.0841762, 1974.816225, 3226.339038, 4658.098959, 6250.640132, 7989.483585, 9863.4, 13851.5};
+        //下泄流量
+        double[] xArray = {
+                1.50,1.57,1.63,1.69,1.77,1.93,1.91,1.98,2.05,2.13,2.21,2.29,2.37,2.45,2.62,2.71,2.79,2.88
+        };
+        //水位
+        double[] yArray = {
+                142.63,403.41,741.12,1141.03,1594.63,2096.2,2641.51,3227.31,3850.96,4510.3,5203.49,5928.94,6685.29,7471.32,8285.95,9128.2,9997.21,10892.16
+        };
 
         if (volume <= xArray[0]) {
             return yArray[0];
@@ -83,6 +88,7 @@ public class HD extends Reservoir {
             reservoirWaterLevel[i + 1] = getLevelByVolume(reservoirVolume[i + 1]);
         }
     }
+
 
 
 

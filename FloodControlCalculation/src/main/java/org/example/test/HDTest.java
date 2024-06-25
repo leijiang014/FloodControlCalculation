@@ -1,8 +1,12 @@
-package org.example;
+package org.example.test;
+
+import org.example.pojo.HD;
+import org.example.pojo.Statistcs;
 
 public class HDTest {
     public static void main(String[] args) {
-        HD hd = new HD(Statistcs.flood1);
+        HD hd = new HD();
+        hd.setInflow(Statistcs.flood1);
         double T = 3600;
         double currentStorage = 13.33;
         double inflow = 9000;
