@@ -16,6 +16,7 @@ public class FloodControlTest {
         List<Reservoir> reservoirs = new ArrayList<>();
         reservoirs.add(floodControl.hd);
         reservoirs.add(floodControl.dhq);
+        reservoirs.add(floodControl.mw);
         writeExcel.writeExcel(reservoirs);
 
     }

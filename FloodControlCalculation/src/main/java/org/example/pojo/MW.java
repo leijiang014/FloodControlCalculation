@@ -1,11 +1,11 @@
 package org.example.pojo;
 
-public class HD extends Reservoir {
+public class MW extends Reservoir {
     public double usableStorage = 8.28;
     public double deadStorage = 8.42;
 
-    public HD() {
-        name = "HD";
+    public MW() {
+        name = "MW";
     }
 
     public void setInflow(double[] inflow) {
@@ -16,8 +16,16 @@ public class HD extends Reservoir {
     }
     @Override
     public double getLevelByVolume(double volume) {
-        double[] xArray = {8.75, 8.96, 9.17, 9.38, 10.00, 10.83, 11.67, 12.50, 13.33, 14.48, 15.24};
-        double[] yArray = {1598,1599,1600,1601,1604,1607,1610,1613,1616,1619,1622.78};
+        double[] xArray = {
+                0,0.08,0.25,0.66,1.3,2.1,3.08,5.01,6.6,7.2
+
+
+        };
+        double[] yArray = {
+                1275,1287,1300,1320,1340,1360,1380,1398,1408,1414.8
+
+
+        };
         if (volume <= xArray[0]) {
             return yArray[0];
         }
@@ -37,8 +45,13 @@ public class HD extends Reservoir {
     }
 
     public double getMaxInstantOutflow(double volume) {
-        double[] xArray = {8.75, 8.96, 9.17, 9.38, 10.00, 10.83, 11.67, 12.50, 13.33, 14.48, 15.24};
-        double[] yArray = {0, 357.4970174, 632.4938402, 930.0841762, 1974.816225, 3226.339038, 4658.098959, 6250.640132, 7989.483585, 9863.4, 13851.5};
+        double[] xArray = {
+                5.01,5.17,5.33,5.49,5.65,5.81,5.96,6.12,6.28,6.44,6.6,6.78,6.95,7.22
+        };
+        double[] yArray = {
+                0,257.8125,729.2038681,1339.633046,2062.5,2882.431377,3789.054446,4774.754319,5833.630945,6960.9375,8152.747093,10717.06437,13505.04463,16500
+
+        };
 
         if (volume <= xArray[0]) {
             return yArray[0];
@@ -73,15 +86,10 @@ public class HD extends Reservoir {
         return Avgoutflow;
     }
 
-    public double outflowConstraint(double waterLevel){
-        return 0;
-    }
-
-
     public void floodControlCalculate() {
         for (int i = 0; i < inflow.length; i++) {
 
-            outflow[i] = Math.min(13500,getMaxPeriodAvgOutflow(reservoirVolume[i], inflow[i]));
+            outflow[i] = getMaxPeriodAvgOutflow(reservoirVolume[i], inflow[i]);
             reservoirVolume[i + 1] = reservoirVolume[i] + (inflow[i] - outflow[i]) * T / 100000000;
             reservoirWaterLevel[i + 1] = getLevelByVolume(reservoirVolume[i + 1]);
         }
